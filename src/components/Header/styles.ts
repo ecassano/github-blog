@@ -1,16 +1,22 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.header`
   padding: 0 2rem;
   height: 18.5rem;
-  background-image: url("../../../public/images/headerBG.png");
-  background-repeat: no-repeat;
-  background-position: center;
   position: relative;
 `;
 
+export const BackgroundLight = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+`;
+
 export const Content = styled.div`
-  max-width: 1160px;
+  max-width: 864px;
   margin: 0 auto;
 `;
 
@@ -26,7 +32,7 @@ export const Logo = styled.div`
   }
 
   > span {
-    color: ${(props) => props.theme.blue};
+    color: ${props => props.theme.blue};
     text-transform: uppercase;
     line-height: 1.6;
     font-size: 1.5rem;
@@ -36,20 +42,19 @@ export const Logo = styled.div`
 
 const baseStripes = styled.img`
   position: absolute;
+  z-index: -2;
 `;
 
 export const StripesLeft = styled(baseStripes)`
   left: 0;
   height: 11.75rem;
   margin-top: calc((18.5rem - 11.75rem) / 2);
-  z-index: 999;
 `;
 
 export const StripesRight = styled(baseStripes)`
   right: 0;
   height: 14.75rem;
   margin-top: calc((18.5rem - 14.75rem) / 2);
-  z-index: 999;
 `;
 
 export const EllipseLeft = styled(baseStripes)`
