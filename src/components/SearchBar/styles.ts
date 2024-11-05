@@ -39,6 +39,7 @@ export const Container = styled.div`
     }
 
     &:focus {
+      transition: border-color 0.3s;
       border-color: ${props => props.theme.blue};
     }
   }

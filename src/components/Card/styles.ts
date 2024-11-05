@@ -4,6 +4,7 @@ import { typography } from '../../styles/typography';
 export const CardContainer = styled.div`
   max-width: 864px;
   margin: 0 auto;
+  margin-bottom: 4rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
@@ -15,6 +16,8 @@ export const Box = styled.div`
   padding: 2rem;
   border-radius: 10px;
   height: 16.25rem;
+  border: 1px solid transparent;
+  cursor: pointer;
 
   display: flex;
   flex-direction: column;
@@ -45,5 +48,10 @@ export const Box = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 4; /* Limita o texto a 5 linhas */
     -webkit-box-orient: vertical;
+  }
+
+  &:hover {
+    transition: border-color 0.3s;
+    border-color: ${props => props.theme['base-label']};
   }
 `;

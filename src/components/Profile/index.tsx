@@ -1,4 +1,4 @@
-import { Box, Info } from "./styles";
+import { Box, Info, InfoBadgesContainer, InfoTitleContainer, Link } from "./styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpRightFromSquare, faBuilding, faUserGroup } from "@fortawesome/free-solid-svg-icons";
@@ -10,13 +10,21 @@ const Profile = () => {
     <Box>
       <img src={avatar} alt="Foto de perfil" />
       <Info>
-        <h2>Cameron Williamson</h2>
+        <InfoTitleContainer>
+          <h2>Cameron Williamson</h2>
+          <Link href="https://github.com/" target="_blank">
+            <div>
+              <p>github</p>
+              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+            </div>
+          </Link>
+        </InfoTitleContainer>
         <p>
           Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu viverra
           massa quam dignissim aenean malesuada suscipit. Nunc, volutpat pulvinar
           vel mass.
         </p>
-        <div>
+        <InfoBadgesContainer>
           <span>
             <FontAwesomeIcon icon={faGithub} />
             <p>cameronwll</p>
@@ -29,14 +37,8 @@ const Profile = () => {
             <FontAwesomeIcon icon={faUserGroup} />
             <p>32 seguidores</p>
           </span>
-        </div>
+        </InfoBadgesContainer>
       </Info>
-      <a href="">
-        <div>
-          <p>github</p>
-          <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-        </div>
-      </a>
     </Box>
   );
 };
