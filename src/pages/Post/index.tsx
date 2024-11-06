@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
-import Profile from "../../components/Profile";
+import PostContent from "./components/PostContent";
+import PostProfile from "./components/PostProfile";
+import { Container } from "./styles";
 
 type PostParams = {
   id: string;
@@ -10,13 +12,13 @@ type PostParams = {
 // }
 
 const Post = () => {
-  const { id } = useParams<PostParams>();
+  // const { id } = useParams<PostParams>();
 
   return (
-    <>
-      <Profile />
-      <h1>Post {id}</h1>
-    </>
+    <Container>
+      <PostProfile />
+      <PostContent />
+    </Container>
   )
 }
 

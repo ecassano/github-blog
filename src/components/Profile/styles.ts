@@ -18,12 +18,16 @@ export const Box = styled.div`
   > img {
     width: 9.25rem;
     height: 9.25rem;
+    border-radius: 8px;
   }
 `;
 
 export const Info = styled.div`
+  flex: 1;
+  height: 9.25rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 0.5rem;
 
   color: ${props => props.theme['base-title']};
@@ -65,7 +69,7 @@ export const InfoBadgesContainer = styled.div`
   }
 `;
 
-export const Link = styled.a`
+export const StyledLink = styled.a`
   color: ${props => props.theme.blue};
   text-decoration: none;
   height: fit-content;
@@ -98,5 +102,10 @@ export const Link = styled.a`
     display: flex;
     align-items: center;
     gap: 0.5rem;
+
+    > p {
+      ${typography.fonts.link}
+      text-transform: uppercase;
+    }
   }
 `;

@@ -1,41 +1,39 @@
-import { Box, Info, InfoBadgesContainer, InfoTitleContainer, Link } from "./styles";
+import { Box, Info, InfoBadgesContainer, InfoTitleContainer, StyledLink } from "./styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUpRightFromSquare, faBuilding, faUserGroup } from "@fortawesome/free-solid-svg-icons";
-import avatar from "../../assets/avatar.png";
+import { UserData } from "../../@types/data";
+interface Props extends Partial<Omit<UserData, 'login'>> {
+  username?: string;
+}
 
-
-const Profile = () => {
+const Profile = ({ avatar_url, name, bio, username, company, followers }: Props) => {
   return (
     <Box>
-      <img src={avatar} alt="Foto de perfil" />
+      <img src={avatar_url} alt="Foto de perfil" />
       <Info>
         <InfoTitleContainer>
-          <h2>Cameron Williamson</h2>
-          <Link href="https://github.com/" target="_blank">
+          <h2>{name}</h2>
+          <StyledLink href="https://github.com/" target="_blank">
             <div>
               <p>github</p>
-              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+              <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xs" />
             </div>
-          </Link>
+          </StyledLink>
         </InfoTitleContainer>
-        <p>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu viverra
-          massa quam dignissim aenean malesuada suscipit. Nunc, volutpat pulvinar
-          vel mass.
-        </p>
+        <p>{bio}</p>
         <InfoBadgesContainer>
           <span>
             <FontAwesomeIcon icon={faGithub} />
-            <p>cameronwll</p>
+            <p>{username}</p>
           </span>
           <span>
             <FontAwesomeIcon icon={faBuilding} />
-            <p>Rocketseat</p>
+            <p>{company ? company : "Nenhuma"}</p>
           </span>
           <span>
             <FontAwesomeIcon icon={faUserGroup} />
-            <p>32 seguidores</p>
+            <p>{followers} seguidores</p>
           </span>
         </InfoBadgesContainer>
       </Info>
