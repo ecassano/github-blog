@@ -12,7 +12,7 @@ import logo from "../../assets/logoImage.svg";
 import stripesLeft from "../../assets/stripesEsq.svg";
 import stripesRight from "../../assets/stripesDir.svg";
 import ellipseLeft from "../../assets/ellipseEsq.png";
-import backgroundLight from "../../../public/images/headerBG.png";
+import backgroundLight from "../../assets/headerBG.png";
 
 const Header = () => {
   return (
