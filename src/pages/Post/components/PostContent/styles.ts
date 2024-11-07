@@ -13,7 +13,14 @@ export const Content = styled.div`
     ${typography.fonts.textM}
   }
 
-  > code {
+  > pre {
+    background: ${props => props.theme['base-post']};
     color: ${props => props.theme['base-text']};
+    border-radius: 2px;
+  }
+
+  > h3 {
+    color: ${props => props.theme.blue};
+    ${typography.fonts.titleS}
   }
 `;

@@ -1,14 +1,22 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 import { Container } from "./styles";
 
-const SearchBar = () => {
+interface Props {
+  handleQuery: (query: string) => void;
+}
+
+const SearchBar = ({ handleQuery }: Props) => {
   const [searchValue, setSearchValue] = useState('');
   const [query] = useDebounce(searchValue, 500);
 
-  const handleQuerySearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value)
+  const handleSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
   }
+
+  useEffect(() => {
+    handleQuery(query);
+  }, [query]);
 
   return (
     <Container>
@@ -19,7 +27,7 @@ const SearchBar = () => {
       <input
         type="text"
         placeholder="Buscar conteúdo"
-        onChange={handleQuerySearch}
+        onChange={handleSearchValue}
       />
       <h1>{query}</h1>
     </Container>

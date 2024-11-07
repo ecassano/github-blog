@@ -1,11 +1,21 @@
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import { faArrowUpRightFromSquare, faComment, faChevronLeft, faCalendarDay } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { formatDistanceToNow } from "date-fns"
+import { ptBR } from "date-fns/locale/pt-BR"
 import { useNavigate } from "react-router-dom"
 import { InfoBadgesContainer, StyledLink } from "../../../../components/Profile/styles"
 import { BackButton, ButtonsContainer, InfoContainer, PostBox } from "./styles"
 
-const PostProfile = () => {
+interface Props {
+  title: string;
+  username: string;
+  date: string;
+  comments: number;
+  url: string;
+}
+
+const PostProfile = ({ title, username, date, comments, url }: Props) => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
@@ -21,7 +31,7 @@ const PostProfile = () => {
             <p>Voltar</p>
           </div>
         </BackButton>
-        <StyledLink href="https://github.com/" target="_blank">
+        <StyledLink href={url} target="_blank">
           <div>
             <p>Ver no github</p>
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="xs" />
@@ -29,19 +39,22 @@ const PostProfile = () => {
         </StyledLink>
       </ButtonsContainer>
       <InfoContainer>
-        <h2>JavaScript data types and data structures</h2>
+        <h2>{title}</h2>
         <InfoBadgesContainer>
           <span>
             <FontAwesomeIcon icon={faGithub} />
-            <p>cameronwll</p>
+            <p>{username}</p>
           </span>
           <span>
             <FontAwesomeIcon icon={faCalendarDay} />
-            <p>Rocketseat</p>
+            <p>{formatDistanceToNow(new Date(date), {
+              addSuffix: true,
+              locale: ptBR
+            })}</p>
           </span>
           <span>
             <FontAwesomeIcon icon={faComment} />
-            <p>32 seguidores</p>
+            <p>{comments} comentários</p>
           </span>
         </InfoBadgesContainer>
       </InfoContainer>

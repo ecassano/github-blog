@@ -6,7 +6,7 @@ export const CardContainer = styled.div`
   margin: 0 auto;
   margin-bottom: 4rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2rem;
 `;
 

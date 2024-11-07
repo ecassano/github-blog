@@ -1,20 +1,53 @@
 import { Content } from "./styles"
 
-const PostContent = () => {
+const formatContent = (content: string) => {
+  const lines = content.split('\n');
+
+  return lines.map((line, index) => {
+    if (line.startsWith("```")) {
+      let codeBlock = "";
+      // Percorre as linhas para capturar o conteúdo do código
+      while (lines[index + 1] && !lines[index + 1].startsWith("```")) {
+        codeBlock += lines[index + 1] + "\n";
+        index++;
+      }
+
+      return (
+        <pre key={index}>
+          <code>{codeBlock.trim()}</code>
+        </pre>
+      );
+    }
+
+    // Títulos
+    if (line.startsWith('### ')) {
+      return <h3 key={index}>{line.replace('### ', '').replace(/\*\*/g, '')}</h3>;
+    }
+
+    // Negrito (**) -> <strong>
+    if (line.includes('**')) {
+      return <p key={index}>{line.split('**').map((chunk, i) => i % 2 === 1 ? <strong>{chunk}</strong> : chunk)}</p>;
+    }
+
+    if (line.includes('```')) {
+      return <code key={index}>{line}</code>
+    }
+
+    if (line.startsWith("![")) {
+      console.log(line.slice(line.indexOf("(") + 1, line.lastIndexOf(")")))
+      return <img src={line.slice(line.indexOf("(") + 1, line.lastIndexOf(")"))} alt="" />
+    }
+
+    return <p key={index}>{line}</p>;
+  });
+};
+
+const PostContent = ({ content }: { content: string }) => {
+  const formattedContent = formatContent(content);
+
   return (
     <Content>
-      <p>
-        Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
-
-        Dynamic typing
-        JavaScript is a loosely typed and dynamic language. Variables in JavaScript are not directly associated with any particular value type, and any variable can be assigned (and re-assigned) values of all types:
-
-      </p>
-      <code>
-        let foo = 42;   // foo is now a number
-        foo = ‘bar’;    // foo is now a string
-        foo = true;     // foo is now a boolean
-      </code>
+      {formattedContent}
     </Content>
   )
 }
